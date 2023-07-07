@@ -11,7 +11,17 @@ function retornarCardHTML(producto) {
       </div>
     `;
   }
-  
+  const activarClickEnBotones = () => {
+    const botonesAgregar = document.querySelectorAll('.button.button-outline.button-add');
+    for (boton of botonesAgregar){
+      boton.addEventListener('click',(e)=>{
+        agregarAlCarrito(e.target.id)
+      })
+    }
+   
+  }
+
+
   
   function cargarProductos(array) {
     const container = document.querySelector('.container');
@@ -20,6 +30,7 @@ function retornarCardHTML(producto) {
       const cardHTML = retornarCardHTML(producto);
       container.innerHTML += cardHTML;
     });
+    activarClickEnBotones()
   }
   
   // Llamamos a la función cargarProductos y pasamos el array de productos
