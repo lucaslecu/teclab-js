@@ -1,4 +1,6 @@
 
+const productos = []
+const URL = "js/productos.json"
 function retornarCardHTML(producto) {
     return `
       <div class="card">
@@ -34,4 +36,12 @@ function retornarCardHTML(producto) {
   }
   
   // Llamamos a la función cargarProductos y pasamos el array de productos
-  cargarProductos(productos);
+  
+  const obtenerProductos = () => {
+    fetch(URL)
+    .then( (reponse) => reponse.json() )
+    .then((data) => productos.push(...data))
+    .then(()=> cargarProductos(productos))
+    .catch((error)=> console.error(error))
+    }
+    obtenerProductos()
